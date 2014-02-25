@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<html>
+<link rel="stylesheet" type="text/css" href="{% static 'askq/style.css' %}" />
+<link rel="shortcut icon" href="{% static 'askq/images/favicon.ico' %}" type="image/x-icon">
+<head>
+<title>Пример резиновой CSS верстки с помощью таблицы</title>
+</head>
+<body>
+<table cellpadding="0" cellspacing="0" width="100%" align="center">
+<tr>
+<td colspan="3" class="header">Аутсорсинговые проекты Call-центра</td>
+</tr>
+<tr>
+
+<td class="left_col">
+    {% for proj in projects %}
+    <a href="{% url 'askq:detail' proj.id %}">{{ proj.projectname }}</a><br />
+        <br />
+    {% endfor %}
+</td>
+
+<td class="center_col">Ширина ячейки в данном случае зависит от величины монитора или размера окна браузера.</td>
+</tr>
+<tr>
+<td colspan="3" class="footer">БИС-Новосибирск 2014</td>
+</tr>
+</table>
+<form method="post" action="">
+    {{ form }}
+</form>
+</body>
+</html>
