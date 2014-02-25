@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView
-from askq.models import Proj
+from askq.models import Proj, Ask
 from askq.forms import ProjForm
 
 class Projects(ListView):
@@ -7,6 +7,7 @@ class Projects(ListView):
     context_object_name = 'projects'
     template_name = 'askq\index.html'
 
-class DetailView(DetailView):
-    model = Proj
+class Asks(DetailView):
+    model = Ask
+    context_object_name = 'asks'
     template_name = 'askq\detail.html'

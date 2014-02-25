@@ -5,6 +5,7 @@ from askq.models import Proj, Ask, Answer
 class AskInline(admin.TabularInline):
     model = Ask
     extra = 3
+    max_num = 3
     fieldsets = [
         ( 'Вопрос', {'fields': ['question'], 'classes': ['wide']}),
     ]
@@ -26,7 +27,7 @@ class ProAdmin(admin.ModelAdmin):
 
 class AskAdmin(admin.ModelAdmin):
     ordering = ('proj',)
-    readonly_fields = ('proj',)
+#    readonly_fields = ('proj',)
     fieldsets = [
         ('Проект', {'fields':['proj']}),
         ('Вопрос', {'fields': ['question']}),
