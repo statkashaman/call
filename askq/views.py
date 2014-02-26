@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render_to_response, RequestContext
 from django.views.generic import ListView, DetailView
 from askq.models import Proj, Ask
 from askq.forms import ProjForm
@@ -14,4 +14,4 @@ class Asks(DetailView):
 
 def projlist(request):
     form = ProjForm()
-    return render(request, 'askq\index.html', {'form': form })
+    return render_to_response('askq\index.html', locals(), context_instance=RequestContext(request))
