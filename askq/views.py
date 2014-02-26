@@ -12,6 +12,9 @@ class Asks(DetailView):
     model = Ask
     template_name = 'askq\detail.html'
 
-def projlist(request):
-    form = ProjForm()
-    return render_to_response('askq\index.html', locals(), context_instance=RequestContext(request))
+def index(request):
+    form = ProjForm(request.GET)
+    if form.is_valid():
+        form.save()
+    context = dict(form=form)
+    return render_to_response('askq\index.html', context)
