@@ -12,11 +12,6 @@ class Proj(models.Model):
     def __unicode__(self):
         return self.projectname
 
-class ProjForm(ModelForm):
-    class Meta:
-        model = Proj
-        exclude = ('urlp',)
-
 
 class Ask(models.Model):
     proj = models.ForeignKey(Proj,verbose_name = "Проект")
