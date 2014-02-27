@@ -3,26 +3,23 @@
 <link rel="stylesheet" type="text/css" href="{% static 'askq/style.css' %}" />
 <link rel="shortcut icon" href="{% static 'askq/images/favicon.ico' %}" type="image/x-icon">
 <head>
-<title>Пример резиновой CSS верстки с помощью таблицы</title>
+{% block title %}<title>Аутсорсинговые проекты Call-центра</title>{% endblock %}
 </head>
 <body>
 <table cellpadding="0" cellspacing="0" width="100%" align="center">
 <tr>
 <td>
-     <form method="get">
     <select name="slist">
         <option>Список</option>
             {% for i in projects %}
         <option value="{{ i.id }}">{{ i.projectname }}</option>
             {% endfor %}
     </select>
-  </form>
 </td>
     <td colspan="2" class="header">Аутсорсинговые проекты Call-центра</td>
 </tr>
 <tr>
 <td class="left_col">
-
 </td>
 <td class="center_col">Ширина ячейки в данном случае зависит от величины монитора или размера окна браузера.</td>
 </tr>
@@ -30,5 +27,10 @@
 <td colspan="3" class="footer">БИС-Новосибирск 2014</td>
 </tr>
 </table>
+  <form method="GET">
+      {% for field in form %}
+        {{ form }}
+        {% endfor %}
+  </form>
 </body>
 </html>
