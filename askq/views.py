@@ -1,14 +1,15 @@
-from django.shortcuts import render_to_response, RequestContext
+from django.http import HttpResponse
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from askq.models import Proj, Ask
 from askq.forms import ProjForm
 
-class Projects(ListView):
-    model = Proj
-    context_object_name = 'projects'
-    template_name = 'askq/index.html'
-    def index(request):
-        return render_to_response('askq/index.html', {'form':ProjForm()}, context_instance=RequestContext(request))
+
+def index(request):
+        projects = Proj.objects.all()
+        form = ProjForm
+        context = {'form': form , 'projects': projects}
+        return render(request, 'askq/index.html', context)
 
 
 class Asks(DetailView):

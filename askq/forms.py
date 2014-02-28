@@ -5,7 +5,7 @@ from models import Proj
 class ProjForm(forms.ModelForm):
     class Meta:
         model = Proj
-        exclude = ('url',)
+        fields = ('projectname',)
         widgets = {
-            'projectname': forms.Select( choices=Proj.objects.all()),
+            'projectname': forms.Select(choices = Proj.objects.all()),
         }

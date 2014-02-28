@@ -16,7 +16,7 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 TEMPLATE_DIRS = (
-    'template',
+    'askq/templates/admin',
 )
 
 # Quick-start development settings - unsuitable for production
@@ -36,13 +36,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'askq',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'askq',
+    'django.contrib.formtools',
 )
 
 MIDDLEWARE_CLASSES = (
