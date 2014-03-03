@@ -1,6 +1,31 @@
-.left_col_top {width:220px; height:150px; background-color:#dddddd; padding:15px; vertical-align:middle; font-size: 24px}
-.header {height:150px; background-color:#717dc9; padding:20px; text-align:center; font-size: 24px}
-.left_col {width:220px; height:500px; background-color:#dddddd; padding:15px; vertical-align:middle; font-size: 24px}
+.left_col_top {width:320px; height:150px; background-color:#717dc9; padding:15px; vertical-align:middle; font-size: 24px}
+.header {height:150px; background-color:#717dc9; padding:20px; text-align:center; font-size: 48px; text-shadow: 6px 6px 0px rgba(0,0,0,0.2); font: bold;}
+.left_col {width:320px; height:500px; background-color:#717dc9; padding:15px; vertical-align:middle; font-size: 24px}
 .center_col {background-color:#ffffff; padding:15px; vertical-align:top}
 .right_col {width:120px; background-color:#dddddd; padding:15px; vertical-align:top}
 .footer {padding:10px 0 10px 20px; background-color:#717dc9; font-size:13px}
+
+/* Выпадающий список*/
+.select-style select {
+    border-radius: 0;
+    background: transparent;
+    height: 34px;
+    padding: 5px;
+    border: 0;
+    font-size: 16px;
+    line-height: 1;
+    -webkit-appearance: none;
+    width: 268px;
+   }
+/*
+.select-style {
+    border: 1px solid #CCC;
+    overflow: hidden;
+    height: 34px;
+    background: url(http://wpandyou.ru/wp-content/uploads/2013/01/down_arrow_select.jpg) no-repeat right #DDD;
+    width: 240px;
+   } */
+.askq {
+    font-size: 14px;
+
+}

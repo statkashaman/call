@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.forms import ModelForm
+from django import forms
 
 
 class Proj(models.Model):
+    id = models.AutoField(primary_key=True)
     projectname = models.CharField("Имя проекта", max_length=200)
     urlp = models.URLField("Адрес проекта", max_length=200)
     class Meta:

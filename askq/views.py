@@ -6,9 +6,19 @@ from askq.forms import ProjForm
 
 
 def index(request):
+    if 'projectname' in request.GET:
+        prname = request.GET['projectname']
+        askq = Ask.objects.filter(proj=prname)
+        askqs = Ask.objects.all()
         projects = Proj.objects.all()
-        form = ProjForm
-        context = {'form': form , 'projects': projects}
+        cur_proj = Proj.objects.filter(id=prname)
+        form = ProjForm()
+        context = {'form': form , 'projects': projects, 'askq': askq, 'askqs': askqs, 'cur_proj': cur_proj}
+        return render(request, 'askq/index.html', context)
+    else:
+        projects = Proj.objects.all()
+        form = ProjForm()
+        context = {'form': form , 'projects': projects }
         return render(request, 'askq/index.html', context)
 
 
