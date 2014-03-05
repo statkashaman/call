@@ -26,18 +26,22 @@
 </tr>
 <tr>
 <td class="left_col">
-    <div class="askq">
+
+<ul>
         {% for i in askq %}
-        {{ i }}<br />
+     <li>
+         <div class="askq">
+        <a href="/call/?projectname={{ cur_proj.id }}&cur_quest={{ i.id }}" >{{ i }}</a><br />
+        </div>
+      </li>
         {%  endfor %}
-    </div>
+</ul>
 </td>
-<td class="center_col">Ширина ячейки в данном случае зависит от величины монитора или размера окна браузера.</td>
+<td class="center_col"> {% autoescape off %}{{ answer }} {% endautoescape %}</td>
 </tr>
 <tr>
 <td colspan="3" class="footer">БИС-Новосибирск 2014</td>
 </tr>
 </table>
-{{ prname }}
 </body>
 </html>

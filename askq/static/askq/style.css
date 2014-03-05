@@ -1,27 +1,17 @@
 .left_col_top {width:320px; height:150px; background-color:#717dc9; padding:15px; vertical-align:middle; font-size: 24px}
-.header {height:150px; background-color:#717dc9; padding:20px; text-align:center; font-size: 48px; text-shadow: 0 0 1px hsl(20, 100%, 18%),
-             -1px 1px 0 hsl(20, 100%, 16%),
-             -2px 2px 2px -1px hsl(20, 100%, 14%),
-             -4px 4px 2px -2px hsl(20, 100%, 12%),
-             -6px 6px 3px -3px hsl(20, 100%, 10%),
-             -8px 8px 2px -4px hsl(20, 100%, 9%),
-             -10px 10px 3px -5px hsl(20, 100%, 8%),
-             -12px 12px 2px -6px hsl(20, 100%, 7%),
-             -14px 14px 2px -7px hsl(20, 100%, 6%),
-             -15px 15px 2px -8px hsl(20, 100%, 5%),
-             -15px 15px 0 -8px hsla(20, 50%, 10%, 0.25); font: bold;}
+.header {height:150px; background-color:#717dc9; padding:20px; text-align:center; font-size: 48px; font: bold;}
 .left_col {width:320px; height:500px; background-color:#717dc9; padding:15px; vertical-align:middle; font-size: 24px}
-.center_col {background-color:#ffffff; padding:15px; vertical-align:top}
+.center_col {background-color:#ffffff; padding:15px; vertical-align:middle; text-align: center;}
 .right_col {width:120px; background-color:#dddddd; padding:15px; vertical-align:top}
 .footer {padding:10px 0 10px 20px; background-color:#717dc9; font-size:13px}
 
 /* Выпадающий список*/
 .select-style select {
     border-radius: 0;
-    background: transparent;
+    background: #ffffff;
     height: 34px;
     padding: 5px;
-    border: 0;
+    border: 3px;
     font-size: 16px;
     line-height: 1;
     -webkit-appearance: none;
@@ -36,6 +26,13 @@
     width: 240px;
    } */
 .askq {
-    font-size: 14px;
-
+    font-size: 20px;
+    text-align: justify;
+}
+.askq a:link, a:visited{
+  text-decoration: none;
+    color: #000000;
+}
+.askq a:hover, a:active {
+  color: #191970;
 }

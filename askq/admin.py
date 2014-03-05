@@ -4,17 +4,17 @@ from askq.models import Proj, Ask, Answer
 
 class AskInline(admin.TabularInline):
     model = Ask
-    extra = 3
-    max_num = 3
+    extra = 0
     fieldsets = [
         ( 'Вопрос', {'fields': ['question'], 'classes': ['wide']}),
     ]
 
 class AnswerInline(admin.StackedInline):
     model = Answer
-    max_num  = 1
+    extra = 0
+#    max_num  = 1
     fieldsets = [
-        ( 'Ответ', {'fields': ['ans'], 'classes': ['wide']}),
+        ( None, {'fields': ['ans'], 'classes': ['wide']}),
     ]
 
 class ProAdmin(admin.ModelAdmin):
