@@ -2,23 +2,30 @@
 <html>
 <link rel="stylesheet" type="text/css" href="{% static 'askq/style.css' %}" />
 <link rel="shortcut icon" href="{% static 'askq/images/favicon.ico' %}" type="image/x-icon">
-<head>
-{% block title %}<title>Аутсорсинговые проекты Call-центра</title>{% endblock %}
-</head>
+{% block content %}
 <body>
-<table cellpadding="0" cellspacing="0" width="100%" align="center">
+<table cellspacing="0" width="100%" align="center">
 <tr>
 <td class="left_col_top">
     <div class="select-style">
         <form method="get" action="/call/">
             {{ form.as_p }}
-            <p><input type="submit" value="Выбрать"></p>
+          <input type="submit" value="Выбрать">
         </form>
     </div>
+        <form action="/call/" method="get">
+        <input type="text" name="q" border="33">
+        <input type="submit" value="Найти">
+        </form>
 </td>
 <td colspan="2" class="header">
   {% if cur_proj %}
+      {% if cur_ask %}
      {{ cur_proj }}
+   <br /><br /> <div class="quest_top"> {{ cur_ask }}</div>
+      {% else %}
+      {{ cur_proj }}
+       {% endif %}
   {% else %}
     Аутсорсинговые проекты Call-центра
   {% endif %}
@@ -26,22 +33,32 @@
 </tr>
 <tr>
 <td class="left_col">
-
-<ul>
+{% if sq %}
+        {% for i in sq %}
+            <div class="askq">
+        <a class="button green" href="/call/?projectname={{ i.proj.id }}&cur_quest={{ i.id }}" >{{ i }}</a><br/><br/>
+            </div>
+        {% endfor %}
+{% else %}
         {% for i in askq %}
-     <li>
-         <div class="askq">
-        <a href="/call/?projectname={{ cur_proj.id }}&cur_quest={{ i.id }}" >{{ i }}</a><br />
+            {% if i.id == cur_ask.id %}
+        <div class="askq">
+        <a class="button red" href="/call/?projectname={{ cur_proj.id }}&cur_quest={{ i.id }}" >{{ i }}</a>
         </div>
-      </li>
+            {% else %}
+        <div class="askq">
+        <a class="button green" href="/call/?projectname={{ cur_proj.id }}&cur_quest={{ i.id }}" >{{ i }}</a>
+        </div>
+            {% endif %}
         {%  endfor %}
-</ul>
+{% endif %}
 </td>
-<td class="center_col"> {% autoescape off %}{{ answer }} {% endautoescape %}</td>
+<td class="center_col"> {% if search_status == 1 %}{% autoescape off %}{{ answer }} {% endautoescape %}{% else %}{{ search_status }}Ничего не найдено =({% endif %}</td>
 </tr>
 <tr>
-<td colspan="3" class="footer">БИС-Новосибирск 2014</td>
+<td colspan="3" class="footer">БИС-Новосибирск 2014{{ sq.1 }}</td>
 </tr>
 </table>
 </body>
+{% endblock %}
 </html>

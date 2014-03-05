@@ -1,13 +1,14 @@
-.left_col_top {width:320px; height:150px; background-color:#717dc9; padding:15px; vertical-align:middle; font-size: 24px}
+.left_col_top {width:320px; height:150px; background-color:#717dc9; padding:15px; vertical-align:middle; font-size: 24px;}
 .header {height:150px; background-color:#717dc9; padding:20px; text-align:center; font-size: 48px; font: bold;}
-.left_col {width:320px; height:500px; background-color:#717dc9; padding:15px; vertical-align:middle; font-size: 24px}
+.left_col {min-width:200px; background-color:#717dc9; padding: 5px; vertical-align:middle;}
 .center_col {background-color:#ffffff; padding:15px; vertical-align:middle; text-align: center;}
-.right_col {width:120px; background-color:#dddddd; padding:15px; vertical-align:top}
-.footer {padding:10px 0 10px 20px; background-color:#717dc9; font-size:13px}
+.right_col {width:120px; background-color:#dddddd; padding:15px; vertical-align:top;}
+.footer {padding:10px 0 10px 20px; background-color:#717dc9; font-size:13px;}
 
 /* Выпадающий список*/
 .select-style select {
-    border-radius: 0;
+    border-radius: 3px;
+    border-color: #000000;
     background: #ffffff;
     height: 34px;
     padding: 5px;
@@ -17,22 +18,43 @@
     -webkit-appearance: none;
     width: 268px;
    }
-/*
-.select-style {
-    border: 1px solid #CCC;
-    overflow: hidden;
-    height: 34px;
-    background: url(http://wpandyou.ru/wp-content/uploads/2013/01/down_arrow_select.jpg) no-repeat right #DDD;
-    width: 240px;
-   } */
 .askq {
-    font-size: 20px;
-    text-align: justify;
+    text-align: center;
 }
 .askq a:link, a:visited{
   text-decoration: none;
-    color: #000000;
+  color: #000000;
 }
 .askq a:hover, a:active {
   color: #191970;
+}
+
+a.button {
+ display: block;
+ font-family: Helvetica, Arial, sans-serif;
+ font-size: 18px;
+ font-weight: bold;
+ padding: 20px 30px;
+ color: #FFFFFF;
+ margin: 0 10px;
+ text-shadow: 2px 2px 1px #595959;
+ filter: dropshadow(color=#595959, offx=1, offy=1);
+ vertical-align: middle;
+ width: 250px;
+}
+
+ .green {
+ border: solid 1px #3b7200;
+ background-color: #88c72a;
+}
+
+.red {
+ border: solid 1px #720000;
+ background-color: #c72a2a;
+}
+
+.quest_top {
+    vertical-align: bottom;
+    font: bold;
+    font-size: 24px;
 }

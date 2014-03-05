@@ -12,7 +12,6 @@ class AskInline(admin.TabularInline):
 class AnswerInline(admin.StackedInline):
     model = Answer
     extra = 0
-#    max_num  = 1
     fieldsets = [
         ( None, {'fields': ['ans'], 'classes': ['wide']}),
     ]
