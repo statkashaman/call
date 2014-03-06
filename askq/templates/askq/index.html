@@ -2,7 +2,6 @@
 <html>
 <link rel="stylesheet" type="text/css" href="{% static 'askq/style.css' %}" />
 <link rel="shortcut icon" href="{% static 'askq/images/favicon.ico' %}" type="image/x-icon">
-{% block content %}
 <body>
 <table cellspacing="0" width="100%" align="center">
 <tr>
@@ -14,7 +13,7 @@
         </form>
     </div>
         <form action="/call/" method="get">
-        <input type="text" name="q" border="33">
+        <input type="text" name="q">
         <input type="submit" value="Найти">
         </form>
 </td>
@@ -53,12 +52,18 @@
         {%  endfor %}
 {% endif %}
 </td>
-<td class="center_col"> {% if search_status == 1 %}{% autoescape off %}{{ answer }} {% endautoescape %}{% else %}{{ search_status }}Ничего не найдено =({% endif %}</td>
+<td class="center_col">
+  {% if query %}
+        {% if not sq %} По запросу: <div class="warning"> {{ query }} </div> ничего не найдено =(
+        {% endif %}
+    {% else %}
+      {% autoescape off %}{{ answer }} {% endautoescape %}
+  {% endif %}
+</td>
 </tr>
 <tr>
-<td colspan="3" class="footer">БИС-Новосибирск 2014{{ sq.1 }}</td>
+<td colspan="3" class="footer">БИС-Новосибирск 2014</td>
 </tr>
 </table>
 </body>
-{% endblock %}
 </html>
