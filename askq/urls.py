@@ -3,6 +3,5 @@ from askq import views
 
 
 urlpatterns = patterns('',
-   #url(r'^$', views.Projects.as_view(),name='index'),
-   url(r'^$',views.index),
+   url(r'^$',views.index,name='index'),
 )

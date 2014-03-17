@@ -1,34 +1,92 @@
 .left_col_top {width:320px; height:150px; background-color:#717dc9; padding:15px; vertical-align:middle; font-size: 24px;}
 .header {height:150px; background-color:#717dc9; padding:20px; text-align:center; font-size: 48px; font: bold;}
 .left_col {min-width:200px; background-color:#717dc9; padding: 5px; vertical-align:middle; height: 600px}
-.center_col {background-color:#ffffff; padding:15px; vertical-align:middle; text-align: center;}
+.center_col {background-color:#c8def4; padding:15px; vertical-align: top; text-align: center;}
 .right_col {width:120px; background-color:#dddddd; padding:15px; vertical-align:top;}
 .footer {padding:10px 0 10px 20px; background-color:#717dc9; font-size:13px;}
 
 /* Выпадающий список*/
 .select-style select {
-    border-radius: 3px;
-    border-color: #000000;
-    background: #ffffff;
-    height: 34px;
+   background: #c8def4;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   border: 1px solid #ccc;
+   height: 34px;
+}
+/* Строка поиска*/
+.sercher-button {
+	-moz-box-shadow: 1px 3px 0px 0px #899599;
+	-webkit-box-shadow: 1px 3px 0px 0px #899599;
+	box-shadow: 1px 3px 0px 0px #899599;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bab1ba));
+	background:-moz-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-webkit-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-o-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-ms-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+	background-color:#ededed;
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+	border-radius:20px;
+	display:inline-block;
+	cursor:pointer;
+	color:#133b45;
+	font-family:Courier New;
+	font-size:18px;
+	font-weight:bold;
+	padding:2px 20px;
+	text-decoration:none;
+	text-shadow:2px 2px 0px #e1e2ed;
+}
+.sercher-button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
+	background:-moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-o-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-ms-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+	background-color:#bab1ba;
+}
+.sercher-button:active {
+	position:relative;
+	top:1px;
+}
+
+.sercher-button:active {
+	position:relative;
+	top:1px;
+}
+
+.sercher {
+    background-color: #c8def4 ;
+    width: 200px;
     padding: 5px;
-    border: 3px;
     font-size: 16px;
-    line-height: 1;
-    -webkit-appearance: none;
-    width: 268px;
-   }
+    border: 1px solid #ccc;
+    height: 34px;
+}
+/* Кнопки с вопросами*/
+
 .askq {
     text-align: center;
 }
 .askq a:link, a:visited{
   text-decoration: none;
-  color: #000000;
+  color: #FFFFFF;
 }
 .askq a:hover, a:active {
-  color: #191970;
+  color: #0081c2;
+}
+.header a:link, a:visited{
+  color: #000000;
 }
 
+.header a:hover, a:active {
+  color: #666666;
+}
 a.button {
  display: block;
  font-family: Helvetica, Arial, sans-serif;
@@ -64,4 +122,14 @@ a.button {
 .error {
     font-size: 24px;
     color: #EE0000;
+}
+
+.na_home {
+  display:block;
+  width:30px;
+  height:150px;
+  position:fixed;
+  right:0;
+  top:250px;
+  z-index: 99999;
 }

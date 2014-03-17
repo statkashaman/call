@@ -11,7 +11,8 @@ class AskInline(admin.TabularInline):
 
 class AnswerInline(admin.StackedInline):
     model = Answer
-    extra = 0
+    extra = 1
+    max_num = 1
     fieldsets = [
         ( None, {'fields': ['ans'], 'classes': ['wide']}),
     ]
@@ -26,18 +27,19 @@ class ProAdmin(admin.ModelAdmin):
 
 class AskAdmin(admin.ModelAdmin):
     ordering = ('proj',)
-#    readonly_fields = ('proj',)
+    readonly_fields = ('proj',)
     fieldsets = [
         ('Проект', {'fields':['proj']}),
         ('Вопрос', {'fields': ['question']}),
     ]
     inlines = [AnswerInline]
+    list_filter = ['proj']
     list_display = ('proj','question')
     class Media:
         js = (
             '/static/tiny_mce/tiny_mce.js',
             '/static/tiny_mce/tiny_mce_init.js',
-        )
+       )
 
 
 admin.site.register(Proj, ProAdmin)
