@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django import forms
 
 
 class Proj(models.Model):
     id = models.AutoField(primary_key=True)
     projectname = models.CharField("Имя проекта", max_length=200)
     urlp = models.URLField("Адрес проекта", max_length=200)
+    filetoproj = models.FileField("Файлы проекта",upload_to="askq",blank=True)
     class Meta:
         verbose_name = u'Проект'
         verbose_name_plural = u'Проекты'
@@ -16,7 +16,8 @@ class Proj(models.Model):
 
 class Ask(models.Model):
     proj = models.ForeignKey(Proj,verbose_name = "Проект")
-    question = models.CharField("Вопрос", max_length=200)
+    question = models.CharField("Вопрос", max_length=4000)
+    filetoask = models.FileField("Файл вопроса",upload_to="askq",blank=True)
     class Meta:
         verbose_name = u'Вопрос'
         verbose_name_plural = u'Вопросы'

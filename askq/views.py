@@ -6,57 +6,72 @@ from django.shortcuts import render
 from askq.models import Proj, Ask, Answer
 from askq.forms import ProjForm
 
+def forma(a):
+    form = ProjForm()
+    form.fields['projectname'].initial = a
+    return(form)
+
+def poisk(a,*args):
+    lq = a.split()
+    qs = Q()
+    for i in lq:
+        qs.add(Q(['question__icontains', i]), 'AND')
+    if args:
+        sq = Ask.objects.filter(qs).filter(proj=args)
+    else:
+        sq = Ask.objects.filter(qs)
+    return(sq)
+
+
+def current_project(a):
+    cur_proj = Proj.objects.get(id=a)
+    return(cur_proj)
+
+def voprosi(*args):
+    askp = Ask.objects.filter(proj=args)
+    return(askp)
+
+def current_vopros(a):
+     cur_ask = Ask.objects.get(id=a)
+     return(cur_ask)
+
+def otvet(*args):
+    try:
+        answers = Answer.objects.filter(ask_id=args)
+    except ObjectDoesNotExist:
+        answers = "К сожалению пока нету ответа"
+    return(answers)
+
 
 def index(request):
     if 'q' in request.GET and request.GET['q']:
         q = request.GET['q']
         if 'projectname' in request.GET:
             prname = request.GET['projectname']
-            lq = q.split()
-            qs = Q()
-            for i in lq:
-                qs.add(Q(['question__icontains', i]), 'AND')
-            sq = Ask.objects.filter(qs).filter(proj=prname)
-            cur_proj = Proj.objects.get(id=prname)
-            form = ProjForm()
-            form.fields['projectname'].initial = prname
-            context = {'form': form,'sq': sq, 'query': q, 'cur_proj': cur_proj}
+            if 'cur_ask' in request.GET:
+                cur_ask = request.GET['cur_ask']
+                context = {'form': forma(prname),'sq': poisk(q,prname), 'query': q, 'cur_proj': current_project(prname),'cur_ask': current_vopros(cur_ask), 'answer': otvet(cur_ask)}
+            else:
+                context = {'form': forma(prname),'sq': poisk(q,prname), 'query': q, 'cur_proj': current_project(prname)}
         else:
-            lq = q.split()
-            qs = Q()
-            for i in lq:
-                qs.add(Q(['question__icontains', i]),'AND')
-            sq = Ask.objects.filter(qs)
-            form = ProjForm()
-            context = {'form': form,'sq': sq, 'query': q}
-        return render(request,'askq/index.html',context)
+            if 'cur_ask' in request.GET:
+                prname = request.GET['project']
+                cur_ask = request.GET['cur_ask']
+                context = {'form': forma(prname),'sq': poisk(q), 'query': q, 'cur_ask': current_vopros(cur_ask), 'answer': otvet(cur_ask),'cur_search_proj':current_project(prname)}
+            else:
+                context = {'form': forma(0),'sq': poisk(q), 'query': q}
     else:
         if 'projectname' in request.GET:
             if request.GET['projectname'] == '':
                 return HttpResponseRedirect("/call/")
             else:
-                if 'cur_quest' in request.GET:
-                    prname = request.GET['projectname']
-                    cur_quest = request.GET['cur_quest']
-                    askq = Ask.objects.filter(proj=prname)
-                    cur_ask = Ask.objects.get(id=cur_quest)
-                    try:
-                        answers = Answer.objects.get(ask_id=cur_quest)
-                    except ObjectDoesNotExist:
-                        answers = "К сожалению пока нету ответа"
-                    cur_proj = Proj.objects.get(id=prname)
-                    form = ProjForm()
-                    form.fields['projectname'].initial = prname
-                    context = {'form': form , 'askq': askq, 'cur_proj': cur_proj, 'cur_quest': cur_quest, 'answer': answers,'cur_ask': cur_ask}
+                prname = request.GET['projectname']
+                if 'cur_ask' in request.GET:
+                    cur_ask = request.GET['cur_ask']
+                    context = {'form': forma(prname) , 'askp': voprosi(prname), 'cur_proj': current_project(prname), 'answer': otvet(cur_ask),'cur_ask': current_vopros(cur_ask)}
                 else:
-                    prname = request.GET['projectname']
-                    askq = Ask.objects.filter(proj=prname)
-                    cur_proj = Proj.objects.get(id=prname)
-                    form = ProjForm()
-                    form.fields['projectname'].initial = prname
-                    context = {'form': form , 'askq': askq, 'cur_proj': cur_proj}
-            return render(request, 'askq/index.html', context)
+                    context = {'form': forma(prname) , 'askp': voprosi(prname), 'cur_proj': current_project(prname)}
         else:
-            form = ProjForm()
-            context = {'form': form}
+            context = {'form': forma(0)}
     return render(request, 'askq/index.html', context)
+

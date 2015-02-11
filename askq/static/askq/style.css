@@ -1,14 +1,14 @@
-.left_col_top {width:320px; height:150px; background-color:#717dc9; padding:15px; vertical-align:middle; font-size: 24px;}
-.header {height:150px; background-color:#717dc9; padding:20px; text-align:center; font-size: 48px; font: bold;}
-.left_col {min-width:200px; background-color:#717dc9; padding: 5px; vertical-align:middle; height: 600px}
-.center_col {background-color:#c8def4; padding:15px; vertical-align: top; text-align: center;}
+.left_col_top {width:320px; height:150px; background-color:#DCDCDC; padding:15px; vertical-align:middle; font-size: 24px;}
+.header {height:150px; background-color:#DCDCDC; padding:20px; text-align:center; font-size: 48px; font: bold;}
+.left_col {width:35%; background-color:#F5DEB3; padding: 5px; vertical-align:middle; height: 600px}
+.center_col {background-color:#F5DEB3; padding:15px; vertical-align: top;}
 .right_col {width:120px; background-color:#dddddd; padding:15px; vertical-align:top;}
-.footer {padding:10px 0 10px 20px; background-color:#717dc9; font-size:13px;}
+.footer {padding:10px 0 10px 20px; background-color:#F5DEB3; font-size:13px;}
 
 /* Выпадающий список*/
 .select-style select {
    background: #c8def4;
-   width: 268px;
+   width: 350px;
    padding: 5px;
    font-size: 16px;
    border: 1px solid #ccc;
@@ -62,7 +62,7 @@
 
 .sercher {
     background-color: #c8def4 ;
-    width: 200px;
+    width: 300px;
     padding: 5px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -71,11 +71,11 @@
 /* Кнопки с вопросами*/
 
 .askq {
-    text-align: center;
+    text-align: left;
 }
 .askq a:link, a:visited{
   text-decoration: none;
-  color: #FFFFFF;
+  color: #000000;
 }
 .askq a:hover, a:active {
   color: #0081c2;
@@ -93,22 +93,22 @@ a.button {
  font-size: 18px;
  font-weight: bold;
  padding: 20px 30px;
- color: #FFFFFF;
+ color: #000000;
  margin: 0 10px;
- text-shadow: 2px 2px 1px #595959;
+ /*text-shadow: 2px 2px 1px #595959;*/
  filter: dropshadow(color=#595959, offx=1, offy=1);
  vertical-align: middle;
- width: 250px;
 }
 
  .green {
  border: solid 1px #3b7200;
- background-color: #88c72a;
+ background-color: #FFE4C4;
 }
 
 .red {
  border: solid 1px #720000;
  background-color: #c72a2a;
+ font-color: #FFFFFF;
 }
 
 .quest_top {
@@ -126,10 +126,34 @@ a.button {
 
 .na_home {
   display:block;
-  width:30px;
-  height:150px;
+  width:150px;
+  height:30px;
   position:fixed;
-  right:0;
-  top:250px;
+  left:45%;
   z-index: 99999;
+}
+.img_file {
+  display:block;
+  width:50px;
+  height:50px;
+  position:fixed;
+  right:10px;
+  top:10px;
+  z-index: 99999;
+}
+/*
+.img_ask_file {
+  display:block;
+  width:50px;
+  height:50px;
+  position:fixed;
+  right:10px;
+  top:140px;
+  z-index: 99999;
+}
+*/
+.img_ask_file {
+    position:absolute;
+    float: right; /* Выравнивание по правому краю  */
+    margin: 0 0 20px 7px;
 }

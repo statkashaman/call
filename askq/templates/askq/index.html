@@ -1,8 +1,10 @@
 {% load staticfiles %}
 <html>
-<title>Аутсорсинговые проекты Call-центра</title>
+<head>
+<title>База знаний операторов Контакт-центра</title>
 <link rel="stylesheet" type="text/css" href="{% static 'askq/style.css' %}" />
 <link rel="shortcut icon" href="{% static 'askq/images/favicon.ico' %}" type="image/x-icon">
+</head>
 <body>
 <a href="{% url 'askq:index' %}" class="na_home"><img alt="buttons" src="{% static 'askq/images/home.jpg' %}" /></a>
 <table cellspacing="0" width="100%" align="center">
@@ -14,59 +16,66 @@
           <input class="sercher-button" type="submit" value="Выбрать">
         </form>
     </div>
-    {% if cur_proj %}
         <form action="/call/" method="get">
         <input class="sercher" type="text" name="q">
+        {% if cur_proj %}
          <input name="projectname" value="{{ cur_proj.id }}" hidden="0">
-        <input class="sercher-button" type="submit" value="Найти">
-        {% else %}
-        <form action="/call/" method="get">
-        <input class="sercher" type="text" name="q">
+        {% endif %}
         <input class="sercher-button" type="submit" value="Найти">
         </form>
-    {% endif %}
 </td>
 <td colspan="2" class="header">
-  {% if cur_proj %}
-      {% if cur_ask %}
-     <a href="{{ cur_proj.urlp }}">{{ cur_proj }}</a>
-   <br /><br /> <div class="quest_top"> {{ cur_ask }}</div>
-      {% else %}
-       <a href="{{ cur_proj.urlp }}">{{ cur_proj}}</a>
-       {% endif %}
-  {% else %}
-    Аутсорсинговые проекты Call-центра
-  {% endif %}
+{% if cur_proj %}
+      {% if cur_proj.filetoproj %}
+        <a href="{{ cur_proj.filetoproj.url }}" type="application/msword"><img src="{% static 'askq/images/file.jpg' %}" width="50" height="50" class="img_file" ></a>
+      {% endif %}
+    <a href="{{ cur_proj.urlp }}">{{ cur_proj}}</a>
+{% else %}
+    {% if cur_search_proj %}
+      {% if cur_search_proj.filetoproj %}
+        <a href="{{ cur_search_proj.filetoproj.url }}" type="application/msword"><img src="{% static 'askq/images/file.jpg' %}" width="50" height="50" class="img_file" ></a>
+      {% endif %}
+    <a href="{{ cur_search_proj.urlp }}">{{ cur_search_proj}}</a>
+    {% else %}
+        База знаний операторов Контакт-центра
+    {% endif %}
+{% endif %}
+{% if cur_ask%}
+        <br /><br /> <div class="quest_top"> {{ cur_ask }}
+         {% if cur_ask.filetoask %}
+            <a href="{{ cur_ask.filetoask.url }}" type="application/msword"><img src="{% static 'askq/images/fileask.png' %}" width="30" height="30" class="img_ask_file" ></a>
+         {% endif %}
+        </div>
+{% endif %}
 </td>
 </tr>
 <tr>
 <td class="left_col">
+<div class="askq">
 {% if sq %}
         {% for i in sq %}
-            <div class="askq">
-        <a class="button green" href="/call/?projectname={{ i.proj.id }}&cur_quest={{ i.id }}" >{{ i|lower|truncatechars:"25" }}</a>
-            </div>
+        <a title="Проект: {{i.proj.projectname}}" class="button {% if i.id == cur_ask.id %}red{% else %}green{% endif %}" href="/call/?q={{ query }}{% if cur_proj %}&projectname={{ i.proj.id }}{% else %}&project={{ i.proj.id }}{% endif %}&cur_ask={{ i.id }}" >{{ i }}</a>
         {% endfor %}
 {% else %}
-        {% for i in askq %}
-            {% if i.id == cur_ask.id %}
-        <div class="askq">
-        <a class="button red" href="/call/?projectname={{ cur_proj.id }}&cur_quest={{ i.id }}" >{{ i|lower|truncatechars:"25" }}</a>
-        </div>
-            {% else %}
-        <div class="askq">
-        <a class="button green" href="/call/?projectname={{ cur_proj.id }}&cur_quest={{ i.id }}" >{{ i|lower|truncatechars:"25" }}</a>
-        </div>
-            {% endif %}
+        {% for i in askp %}
+        <a class="button {% if i.id == cur_ask.id %}red{% else %}green{% endif %}" href="/call/?projectname={{ cur_proj.id }}&cur_ask={{ i.id }}" >{{ i }}</a>
         {%  endfor %}
 {% endif %}
+</div>
 </td>
 <td class="center_col">
   {% if query %}
-        {% if not sq %} По запросу: <div class="warning"> {{ query }} </div> <br />ничего не найдено =(
-        {% endif %}
+      {% if sq %}
+          {% for i in answer %}
+              {% autoescape off %}{{ i }} {% endautoescape %}
+          {% endfor %}
+      {% else %}
+          По запросу: <div class="warning"> {{ query }} </div> <br />ничего не найдено =(
+      {% endif %}
     {% else %}
-      {% autoescape off %}{{ answer }} {% endautoescape %}
+      {% for i in answer %}
+            {% autoescape off %}{{ i }} {% endautoescape %}
+      {% endfor %}
   {% endif %}
 </td>
 </tr>

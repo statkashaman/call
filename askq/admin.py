@@ -6,7 +6,7 @@ class AskInline(admin.TabularInline):
     model = Ask
     extra = 0
     fieldsets = [
-        ( 'Вопрос', {'fields': ['question'], 'classes': ['wide']}),
+        ( 'Вопрос', {'fields': ['question'], 'classes': ['question']}),
     ]
 
 class AnswerInline(admin.StackedInline):
@@ -21,18 +21,20 @@ class ProAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Имя поекта', {'fields': ['projectname'], 'classes': ['wide']}),
         ('Адрес проекта', {'fields': ['urlp']}),
+        ('Файл проекта',{'fields': ['filetoproj']}),
     ]
     inlines = [AskInline]
     list_display = ('projectname', 'urlp')
 
 class AskAdmin(admin.ModelAdmin):
     ordering = ('proj',)
-    readonly_fields = ('proj',)
     fieldsets = [
         ('Проект', {'fields':['proj']}),
-        ('Вопрос', {'fields': ['question']}),
+        ('Вопрос', {'fields': ['question'],'classes': ['question']}),
+        ('Файл вопроса',{'fields': ['filetoask']}),
     ]
     inlines = [AnswerInline]
+    search_fields = ['question']
     list_filter = ['proj']
     list_display = ('proj','question')
     class Media:
