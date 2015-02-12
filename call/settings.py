@@ -16,7 +16,7 @@ SECRET_KEY = '12@z+rk+m_ec-f^76v=&m4^#sxj@9212*$=oh_i)t_mtk9p%%_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['call.bis.local']
 

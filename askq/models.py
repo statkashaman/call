@@ -15,9 +15,9 @@ class Proj(models.Model):
 
 
 class Ask(models.Model):
-    proj = models.ForeignKey(Proj,verbose_name = "Проект")
+    proj = models.ForeignKey(Proj, verbose_name = "Проект")
     question = models.CharField("Вопрос", max_length=4000)
-    filetoask = models.FileField("Файл вопроса",upload_to="askq",blank=True)
+    filetoask = models.FileField("Файл вопроса", upload_to="askq", blank=True)
     class Meta:
         verbose_name = u'Вопрос'
         verbose_name_plural = u'Вопросы'
@@ -26,10 +26,19 @@ class Ask(models.Model):
 
 
 class Answer(models.Model):
-    ask = models.ForeignKey(Ask,verbose_name = "Вопрос")
+    ask = models.ForeignKey(Ask, verbose_name = "Вопрос")
     ans = models.TextField("Ответ")
     class Meta:
         verbose_name = u'Ответ'
         verbose_name_plural = u'Ответы'
     def __unicode__(self):
         return self.ans
+
+class Stats(models.Model):
+    ask_id = models.IntegerField("Вопрос")
+    date_ask = models.DateField("Дата")
+    class Meta:
+        verbose_name = u'Дата'
+        verbose_name_plural = u'Даты'
+    def __unicode__(self):
+        return self.date_ask

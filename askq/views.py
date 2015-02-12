@@ -3,8 +3,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from askq.models import Proj, Ask, Answer
+from askq.models import Proj, Ask, Answer, Stats
 from askq.forms import ProjForm
+import datetime
+import xlwt
 
 def forma(a):
     form = ProjForm()
@@ -42,6 +44,10 @@ def otvet(*args):
         answers = "К сожалению пока нету ответа"
     return(answers)
 
+def stats(a):
+    date_now = datetime.date.today()
+    da = Stats(ask_id = a, date_ask = date_now)
+    da.save()
 
 def index(request):
     if 'q' in request.GET and request.GET['q']:
@@ -50,6 +56,7 @@ def index(request):
             prname = request.GET['projectname']
             if 'cur_ask' in request.GET:
                 cur_ask = request.GET['cur_ask']
+                stats(cur_ask)
                 context = {'form': forma(prname),'sq': poisk(q,prname), 'query': q, 'cur_proj': current_project(prname),'cur_ask': current_vopros(cur_ask), 'answer': otvet(cur_ask)}
             else:
                 context = {'form': forma(prname),'sq': poisk(q,prname), 'query': q, 'cur_proj': current_project(prname)}
@@ -57,6 +64,7 @@ def index(request):
             if 'cur_ask' in request.GET:
                 prname = request.GET['project']
                 cur_ask = request.GET['cur_ask']
+                stats(cur_ask)
                 context = {'form': forma(prname),'sq': poisk(q), 'query': q, 'cur_ask': current_vopros(cur_ask), 'answer': otvet(cur_ask),'cur_search_proj':current_project(prname)}
             else:
                 context = {'form': forma(0),'sq': poisk(q), 'query': q}
@@ -68,10 +76,16 @@ def index(request):
                 prname = request.GET['projectname']
                 if 'cur_ask' in request.GET:
                     cur_ask = request.GET['cur_ask']
+                    stats(cur_ask)
                     context = {'form': forma(prname) , 'askp': voprosi(prname), 'cur_proj': current_project(prname), 'answer': otvet(cur_ask),'cur_ask': current_vopros(cur_ask)}
                 else:
                     context = {'form': forma(prname) , 'askp': voprosi(prname), 'cur_proj': current_project(prname)}
         else:
             context = {'form': forma(0)}
     return render(request, 'askq/index.html', context)
+
+def statistics(request):
+
+    return render(request, 'askq/statistics.html', context)
+
 
