@@ -1,10 +1,56 @@
-<!DOCTYPE html>
+{% load staticfiles %}
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
+<head>
+<title>Статистика запросов</title>
+<link rel="stylesheet" type="text/css" href="{% static 'askq/statstyle.css' %}" />
+<link rel="shortcut icon" href="{% static 'askq/images/favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
+<table cellspacing="0" width="100%" align="center">
+<tr><td colspan="2" class="header">
+ Статистика запросов
+</td></tr>
+<tr>
+<td class="left_col">
+    <div class="select-style">
+        <form method="get" action="/call/stat">
+            {{ form.as_p }}
+            <div class="date_label">Выберите период :<br><br>
+        {% if check_date == 1 %}<div class="date_alert">Выберите дату !!!</div> <br><br>{% endif %}
+            С: &nbsp <input name="date_ot" type="date" value="{{ date_ot }}">
+            <br><br>
+            До: <input name="date_do" type="date" value="{{ date_do }}">
+            </div>
+             <br><br><br>
+            <input class="sercher-button" type="submit" value="Выбрать">
+        </form>
+    </div>
+ <a href="/call/excel_output?projectname={{ cur_proj.id }}&date_ot={{ date_ot }}&date_do={{ date_do }}"><img src="{% static 'askq/images/logo_excel.png' %}" width="50" height="50" ></a>
+</td>
+<td class="right_col">
+{% if result %}
+    <table>
+        <tr><td colspan="2" class="stat_table_header">{{ cur_proj.projectname }}</td></tr>
+        <tr><td class="stat_table_header_1">Вопрос</td><td class=s"stat_table_header_2">Количество запросов</td></tr>
+        {% for j in askp %}
+            {% for i in result %}
+                {% if j.id == i.ask_id %}
+                    <tr>
+                        <td class="stat_table_left_col">{{ j.question }}</td><td class="stat_table_right_col">{{ i.num_ask }}</td>
+                    </tr>
+                {% endif %}
+             {% endfor %}
+            {% if j.id == i.ask_id %}
+            <tr>
+                <td class="stat_table_left_col">{{ j.question }}</td><td class="stat_table_right_col"> 0 </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
 
+    </table>
+{% endif %}
+</td>
+</tr>
+</table>
 </body>
 </html>

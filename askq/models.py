@@ -35,7 +35,8 @@ class Answer(models.Model):
         return self.ans
 
 class Stats(models.Model):
-    ask_id = models.IntegerField("Вопрос")
+    proj_id = models.IntegerField("id Проекта")
+    ask_id = models.IntegerField("id Вопроса")
     date_ask = models.DateField("Дата")
     class Meta:
         verbose_name = u'Дата'
